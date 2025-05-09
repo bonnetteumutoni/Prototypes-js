@@ -73,12 +73,9 @@ console.log(freelancer.calculateEarnings([10000,500000,30000,70000]));
 // //   then implement prototype methods to compute total cost, update order status based on payment,
 // //  and categorize order urgency using switch and conditional statements.
 
-function orderManagement(customer,items,quantity,unitPrice,status){
+function orderManagement(customer,items){
     this.customer=customer;
     this.items=items;
-    this.quantity=quantity;
-    this.unitPrice=unitPrice;
-    this.status=status;
     this.orderUrgencyCategory=function(order){
          switch(order){
             case "high":
@@ -96,10 +93,10 @@ function orderManagement(customer,items,quantity,unitPrice,status){
          }
     }
 }
-orderManagement.prototype.calculateCost=function(){
+orderManagement.prototype.calculateCost=function(unitPrice){
     let totalCost=0;
-   for(let i=0;i<this.unitPrice.length;i++){
-    totalCost+=this.unitPrice[i];
+   for(let i=0;i<unitPrice.length;i++){
+    totalCost+=unitPrice[i];
    }
    return totalCost;
 }
@@ -111,9 +108,9 @@ orderManagement.prototype.updateStatus=function(){
     return this.status="Pending"
    }
 }
-const order=new orderManagement(["Jony","jony@gmail.com"],["Juice","30litres",[45,8300,374]],"pending");
+const order=new orderManagement(["Jony","jony@gmail.com"],["Juice","30litres",8300,"pending"]);
 console.log(order);
-console.log(order.calculateCost());
+console.log(order.calculateCost([45,8300,374]));
 console.log(order.updateStatus());
 // // In a startup’s employee review tool, design an Employee class with properties: id (number), name (string),
 // //  performanceMetrics (object with keys like communication, efficiency, and reliability), and feedback (array of strings), 
