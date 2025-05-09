@@ -156,7 +156,24 @@ class Course{
     this.instructor=instructor;
     this.students=students;
     }
-}
-Course.prototype.studentCompleted=function(){
+    message(){
+            if(this.students.completionStatus==100){
+                return "You completed your work";
+            }else if(this.students.completionStatus<100 && this.students.completionStatus>50){
+                return "Keep it up";
+            }else{
+                return "Please complete your assignment";
+            }
+        }
+    }
 
+Course.prototype.studentCompleted=function(){
+    let completed=this.students.filter(item=>item.completionStatus=100);
+    let studentNames=completed.filter(item=>item.name);
+    return studentNames;
 }
+
+const course=new Course("JavaScript",["Jane","Expert"],[{name:"Jonathan",completionStatus:70},{name:"Johnny",completionStatus:100},{name:"Mary",completionStatus:40}]);
+console.log(course);
+console.log(course.message());
+console.log(course.studentCompleted());
