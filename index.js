@@ -124,11 +124,27 @@ class Employee{
         this.performanceMetrics=performanceMetrics;
         this.feedback=feedback;
     }
+    performance(feedback){
+        if(feedback=="Awesome"){
+            return this.feedback.push(feedback);
+        }else{
+            return "Feedback is not aprroved"
+        }
+    }
 }
-Employee.prototype.calculateAverage=function(){
-
+Employee.prototype.calculateAverage=function(score){
+    let totalCost=0;
+   for(let i=0;i<score.length;i++){
+    totalCost+=score[i];
+   }
+   let average=totalCost/score.length;
+   return average;
 }
 
+const employee=new Employee(21,"Jane",["communication", "efficiency", "reliability"],["Excellent","Genius"]);
+console.log(employee);
+console.log(employee.performance("Awesome"));
+console.log(employee.calculateAverage([45,78,98,56,98]))
 // // Build a simple e-learning system where a Course class has properties: title (string), instructor 
 // // (object with name and expertise), and students (array of objects with name and completionStatus), 
 // // then add prototype methods to return names of students who completed the course, count enrolled students by expertise area, 
